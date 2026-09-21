@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Rachel 💛</title>
+<style>
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background: radial-gradient(circle at center, #211800 0%, #07070b 45%, #000 100%);
+    font-family: Georgia, serif;
+    color: #fff;
+  }
+
+  .stars, .flowers {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+  }
+
+  .star {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 0 10px #fff;
+    animation: twinkle 2s infinite alternate;
+  }
+
+  @keyframes twinkle {
+    from { opacity: .25; transform: scale(.7); }
+    to { opacity: 1; transform: scale(1.5); }
+  }
+
+  .galaxy {
+    position: absolute;
+    width: min(90vw, 850px);
+    height: min(90vw, 850px);
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(-10deg);
+    border-radius: 50%;
+    background:
+      radial-gradient(circle, #fff4a3 0%, #ffd21c 4%, #f4a900 10%, transparent 28%),
+      conic-gradient(from 20deg,
+        transparent 0deg, #ffd83d 25deg, transparent 70deg,
+        #ffbf00 120deg, transparent 170deg,
+        #ffe36e 220deg, transparent 275deg,
+        #ffca28 330deg, transparent 360deg);
+    filter: blur(.2px);
+    box-shadow: 0 0 80px rgba(255,193,7,.45);
+    animation: spin 28s linear infinite;
+  }
+
+  .galaxy::before, .galaxy::after {
+    content: "";
+    position: absolute;
+    inset: 8%;
+    border-radius: 50%;
+    border: 24px solid rgba(255,214,50,.25);
+    transform: rotate(25deg) scaleY(.55);
+    filter: blur(12px);
+  }
+
+  .galaxy::after {
+    inset: 18%;
+    border-width: 14px;
+    opacity: .65;
+    transform: rotate(-25deg) scaleY(.45);
+  }
+
+  @keyframes spin {
+    to { transform: translate(-50%, -50%) rotate(350deg); }
+  }
+
+  .flower {
+    position: absolute;
+    font-size: clamp(18px, 3vw, 40px);
+    filter: drop-shadow(0 0 8px #ffc400);
+    animation: float 5s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(8deg); }
+  }
+
+  .message {
+    position: fixed;
+    z-index: 10;
+    left: 50%;
+    bottom: 8%;
+    transform: translateX(-50%);
+    width: min(90%, 650px);
+    text-align: center;
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(0,0,0,.48);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255,220,80,.35);
+    box-shadow: 0 0 35px rgba(255,193,7,.18);
+  }
+
+  h1 {
+    margin: 0 0 8px;
+    color: #ffd83d;
+    font-size: clamp(2.2rem, 8vw, 5rem);
+    text-shadow: 0 0 20px #ffb300;
+  }
+
+  p {
+    margin: 0;
+    font-size: clamp(1rem, 3vw, 1.35rem);
+    line-height: 1.5;
+  }
+
+  .hint {
+    margin-top: 12px;
+    font-size: .85rem;
+    opacity: .65;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="galaxy"></div>
+
+<div class="flowers" id="flowers"></div>
+
+<div class="message">
+  <h1>Rachel 💛</h1>
+  <p>
+    Si pudiera regalarte una galaxia,<br>
+    sería una hecha de flores amarillas,<br>
+    porque tú haces más bonito mi universo. 🌻✨
+  </p>
+  <div class="hint">Hecho especialmente para ti ❤️</div>
+</div>
+
+<script>
+  const stars = document.getElementById("stars");
+  const flowers = document.getElementById("flowers");
+
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement("span");
+    s.className = "star";
+    s.style.left = Math.random() * 100 + "%";
+    s.style.top = Math.random() * 100 + "%";
+    s.style.animationDelay = Math.random() * 2 + "s";
+    stars.appendChild(s);
+  }
+
+  const emojis = ["🌻", "🌼", "🌻", "🌼", "💛"];
+  for (let i = 0; i < 55; i++) {
+    const f = document.createElement("span");
+    f.className = "flower";
+    f.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    f.style.left = Math.random() * 100 + "%";
+    f.style.top = Math.random() * 100 + "%";
+    f.style.animationDelay = Math.random() * 5 + "s";
+    f.style.opacity = 0.35 + Math.random() * 0.65;
+    flowers.appendChild(f);
+  }
+</script>
+
+</body>
+</html>
